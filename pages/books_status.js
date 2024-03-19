@@ -1,5 +1,18 @@
 let BookInstance = require('../models/bookinstance');
 
-exports.show_all_books_status = function(res) {
-  return res.send([]);
+//SUBMIT THIS 
+
+exports.show_all_books_status = async function(res) {
+  
+
+  try{
+    let results = await BookInstance.find({status : 'Available'}).exec()
+    return res.send([results]);
+  }
+  
+  catch(err) {
+    console.log('Could not get available books ' + err);
+  }
 }
+
+
